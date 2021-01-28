@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Андрей Дымов](https://up.htmlacademy.ru/javascript/22/user/351247).
-* Наставник: `Неизвестно`.
+* Наставник: [Андрей Столпнер](https://htmlacademy.ru/profile/stolpnera).
 
 ---
 
