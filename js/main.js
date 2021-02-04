@@ -4,15 +4,15 @@
 // sourse: https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 
 function getRandomIntInclusive(a,b) {
-  let min;
-  let max;
   if (a > 0 && b > 0) {  // Проверка на отрицательность диапазона
+    let min;
+    let max;
     if (a < b) {
-      a = min;
-      b = max; 
+      min = a;
+      max = b; 
     } else {
-      a = max;
-      b = min;
+      min = b;
+      max = a;
     }
     min = Math.ceil(min);
     max = Math.floor(max);  
@@ -20,14 +20,12 @@ function getRandomIntInclusive(a,b) {
   }
 }
 
-
-getRandomIntInclusive ();
+getRandomIntInclusive();
 
 // Функция для проверки максимальной длины строки.
 
-let maxLength;
-let str;
+function checkMaxLengthStr (str, maxLength) {
+  return maxLength >= str.length ? true : false;
+}
 
-let checkMaxLengthStr = (maxLength >= str.length) ? true : false;
-
-checkMaxLengthStr ();
+checkMaxLengthStr();
