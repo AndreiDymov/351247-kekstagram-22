@@ -30,7 +30,7 @@ function checkMaxLengthStr (str, maxLength) {
 
 checkMaxLengthStr();
 
-const DESCRIPT = [
+const DESCRIPTIONS = [
   'На прогулке',
   'Ем травку',
   'Бегаю по двору',
@@ -58,7 +58,7 @@ const DESCRIPT = [
   'Сплю...',
 ];
 
-const MESSAGE = [
+const MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -67,7 +67,7 @@ const MESSAGE = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-const NAME = [
+const NAMES = [
   'Васёк',
   'Антоша',
   'Аня',
@@ -80,14 +80,14 @@ function getRandomArrayElement(elements) {
   return elements[getRandomIntInclusive(0, elements.length - 1)];
 }
 
-const AVATAR = [];
-function agd(c,d) {
+const AVATARS = [];
+function getRandomAvatar(c,d) {
   for (let i = c; i <= (d - c) + 1; i++) {
-    AVATAR.push('img/avatar-' + i + '.svg');
+    AVATARS.push('img/avatar-' + i + '.svg');
   }
 }
 
-agd(1,6);
+getRandomAvatar(1,6);
 
 const HEADMASS = [];
 function genHeadMass (quantity) { // quantity - количество генерируемых элементов.
@@ -96,13 +96,13 @@ function genHeadMass (quantity) { // quantity - количество генер�
     a = {
       id: i,
       url: 'photos/' + i + '.jpg',
-      description: DESCRIPT[i-1],
+      description: DESCRIPTIONS[i-1],
       likes: getRandomIntInclusive(15,200),
       comments: {
         id: getRandomIntInclusive(26,200),
-        avatar: getRandomArrayElement(AVATAR),
-        message: getRandomArrayElement(MESSAGE),
-        name: getRandomArrayElement(NAME),
+        avatar: getRandomArrayElement(AVATARS),
+        message: getRandomArrayElement(MESSAGES),
+        name: getRandomArrayElement(NAMES),
       },
     }
     HEADMASS.push(a)
