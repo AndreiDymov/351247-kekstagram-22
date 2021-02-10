@@ -80,17 +80,13 @@ function getRandomArrayElement(elements) {
   return elements[getRandomIntInclusive(0, elements.length - 1)];
 }
 
-const AVATARS = [];
 function getRandomAvatar(c,d) {
-  for (let i = c; i <= (d - c) + 1; i++) {
-    AVATARS.push('img/avatar-' + i + '.svg');
-  }
+  let k = getRandomIntInclusive(c,d);
+  return ('img/avatar-' + k + '.svg');
 }
 
-getRandomAvatar(1,6);
-
-const HEADMASS = [];
 function genHeadMass (quantity) { // quantity - количество генерируемых элементов.
+  const HEADMASS = [];
   let a;
   for (let i = 1; i <= quantity; i++) {
     a = {
@@ -100,7 +96,7 @@ function genHeadMass (quantity) { // quantity - количество генер�
       likes: getRandomIntInclusive(15,200),
       comments: {
         id: getRandomIntInclusive(26,200),
-        avatar: getRandomArrayElement(AVATARS),
+        avatar: getRandomAvatar(1,6),
         message: getRandomArrayElement(MESSAGES),
         name: getRandomArrayElement(NAMES),
       },
