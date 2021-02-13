@@ -1,7 +1,13 @@
 'use strict';
 
+const INITIAL_RANGE_LIKES = 15;
+const END_RANGE_LIKES = 200;
+const INITIAL_RANGE_COMMENTATOR_ID = 26;
+const END_RANGE_COMMENTATOR_ID = 200;
+const INITIAL_RANGE_AVATAR = 1;
+const END_RANGE_AVATAR = 6
+
 // Функция, возвращающая случайное целое число из переданного диапазона включительно. 
-// sourse: https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 
 function getRandomIntInclusive(a,b) {
   if (a >= 0 && b >= 0) {  // Проверка на отрицательность диапазона
@@ -80,30 +86,29 @@ function getRandomArrayElement(elements) {
   return elements[getRandomIntInclusive(0, elements.length - 1)];
 }
 
-function getRandomAvatar(c,d) {
-  let k = getRandomIntInclusive(c,d);
-  return ('img/avatar-' + k + '.svg');
+function getRandomAvatar(a,b) {
+  const NUM_AVATAR = getRandomIntInclusive(a,b);
+  return ('img/avatar-' + NUM_AVATAR + '.svg');
 }
 
 function genHeadMass (quantity) { // quantity - количество генерируемых элементов.
-  const HEADMASS = [];
-  let a;
+  const HEAD_MASS = [];
   for (let i = 1; i <= quantity; i++) {
-    a = {
+    const ELEMENT_HEAD_MASS = {
       id: i,
       url: 'photos/' + i + '.jpg',
       description: DESCRIPTIONS[i-1],
-      likes: getRandomIntInclusive(15,200),
+      likes: getRandomIntInclusive(INITIAL_RANGE_LIKES,END_RANGE_LIKES),
       comments: {
-        id: getRandomIntInclusive(26,200),
-        avatar: getRandomAvatar(1,6),
+        id: getRandomIntInclusive(INITIAL_RANGE_COMMENTATOR_ID,END_RANGE_COMMENTATOR_ID),
+        avatar: getRandomAvatar(INITIAL_RANGE_AVATAR,END_RANGE_AVATAR),
         message: getRandomArrayElement(MESSAGES),
         name: getRandomArrayElement(NAMES),
       },
     }
-    HEADMASS.push(a)
+    HEAD_MASS.push(ELEMENT_HEAD_MASS)
   }
-  return HEADMASS
+  return HEAD_MASS
 }
 
-genHeadMass(25); 
+genHeadMass(25);
