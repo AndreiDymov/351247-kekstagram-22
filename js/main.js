@@ -1,1 +1,1 @@
-import './gen-data.js';
+import './data.js';

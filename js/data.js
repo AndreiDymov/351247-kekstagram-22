@@ -1,56 +1,43 @@
-'use strict';
+import {getRandomIntInclusive, getRandomArrayElement} from './util.js';
 
-const INITIAL_RANGE_LIKES = 15;
-const END_RANGE_LIKES = 200;
-const INITIAL_RANGE_COMMENTATOR_ID = 26;
-const END_RANGE_COMMENTATOR_ID = 200;
-const INITIAL_RANGE_AVATAR = 1;
-const END_RANGE_AVATAR = 6;
+import {
+  INITIAL_RANGE_LIKES,
+  END_RANGE_LIKES,
+  INITIAL_RANGE_COMMENTATOR_ID,
+  END_RANGE_COMMENTATOR_ID,
+  INITIAL_RANGE_AVATAR,
+  END_RANGE_AVATAR,
+  DESCRIPTIONS,
+  MESSAGES,
+  NAMES
+} from './constants.js';
 
-const DESCRIPTIONS = [
-  'На прогулке',
-  'Ем травку',
-  'Бегаю по двору',
-  'Повис на занавесках',
-  'Утренняя зарядка',
-  'Вечерняя тренировка',
-  'Питаюсь правильно!',
-  'Играю с соседями',
-  'Греюсь на солнышке',
-  'Умываюсь',
-  'Шумлю в 3 ночи',
-  'Пытаюсь разбудить хозяев',
-  'Разбудил хозяев',
-  'Бегу от хозяев',
-  'Хозяева бегут за мной',
-  'Меня догнали',
-  'Кормят завтраком',
-  'Убирают лоток',
-  'Лежу на подоконнике',
-  'Лакаю молоко',
-  'Играем с друзьями в кости',
-  'Обедаю',
-  'Нашел сметану',
-  'Моюсь после сметаны',
-  'Сплю...',
-];
 
-const MESSAGES = [
-  'Всё отлично!',
-  'В целом всё неплохо. Но не всё.',
-  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
-  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
-];
+function getRandomAvatar(a,b) {
+  const NUM_AVATAR = getRandomIntInclusive(a,b);
+  return ('img/avatar-' + NUM_AVATAR + '.svg');
+}
 
-const NAMES = [
-  'Васёк',
-  'Антоша',
-  'Аня',
-  'Иван',
-  'Вика',
-  'Оля',
-  'Света'];
-  
-export {INITIAL_RANGE_LIKES, END_RANGE_LIKES, INITIAL_RANGE_COMMENTATOR_ID, END_RANGE_COMMENTATOR_ID, INITIAL_RANGE_AVATAR, END_RANGE_AVATAR, DESCRIPTIONS, MESSAGES, NAMES};
+function genHeadMass (quantity) { // quantity - количество генерируемых элементов.
+  const HEAD_MASS = [];
+  for (let i = 1; i <= quantity; i++) {
+    const ELEMENT_HEAD_MASS = {
+      id: i,
+      url: 'photos/' + i + '.jpg',
+      description: DESCRIPTIONS[i-1],
+      likes: getRandomIntInclusive(INITIAL_RANGE_LIKES,END_RANGE_LIKES),
+      comments: {
+        id: getRandomIntInclusive(INITIAL_RANGE_COMMENTATOR_ID,END_RANGE_COMMENTATOR_ID),
+        avatar: getRandomAvatar(INITIAL_RANGE_AVATAR,END_RANGE_AVATAR),
+        message: getRandomArrayElement(MESSAGES),
+        name: getRandomArrayElement(NAMES),
+      },
+    }
+    HEAD_MASS.push(ELEMENT_HEAD_MASS)
+  }
+  return HEAD_MASS
+}
+
+genHeadMass(25);
+
+export {genHeadMass};
